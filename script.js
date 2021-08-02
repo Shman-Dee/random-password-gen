@@ -126,35 +126,50 @@ function generatePassword() {
   // all possible boolean statments for checked array fields
   if (!addCharacters && !addLowercase && !addUppercase && !addNumbers) {
     userInputs = alert("At least one field MUST be selected");
-  } else if (addCharacters && addLowercase && addUppercase && addNumbers) {
+  }
+  if (addCharacters && addLowercase && addUppercase && addNumbers) {
     userInputs = characters.concat(numbers, uppercases, lowercases);
-  } else if (addCharacters && addLowercase && addUppercase) {
+  }
+  if (addCharacters && addLowercase && addUppercase) {
     userInputs = characters.concat(lowercases, uppercases);
-  } else if (addCharacters && addLowercase && addNumbers) {
+  }
+  if (addCharacters && addLowercase && addNumbers) {
     userInputs = characters.concat(lowercases, numbers);
-  } else if (addCharacters && addUppercase && addNumbers) {
+  }
+  if (addCharacters && addUppercase && addNumbers) {
     userInputs = characters.concat(uppercases, numbers);
-  } else if (addLowercase && addUppercase && addNumbers) {
+  }
+  if (addLowercase && addUppercase && addNumbers) {
     userInputs = lowercases.concat(uppercases, numbers);
-  } else if (addCharacters && addLowercase) {
+  }
+  if (addCharacters && addLowercase) {
     userInputs = characters.concat(lowercases);
-  } else if (addCharacters && addUppercase) {
+  }
+  if (addCharacters && addUppercase) {
     userInputs = characters.concat(uppercases);
-  } else if (addCharacters && addNumbers) {
+  }
+  if (addCharacters && addNumbers) {
     userInputs = characters.concat(numbers);
-  } else if (addLowercase && addUppercase) {
+  }
+  if (addLowercase && addUppercase) {
     userInputs = lowercases.concat(uppercases);
-  } else if (addLowercase && addNumbers) {
+  }
+  if (addLowercase && addNumbers) {
     userInputs = lowercases.concat(numbers);
-  } else if (addUppercase && addNumbers) {
+  }
+  if (addUppercase && addNumbers) {
     userInputs = uppercases.concat(numbers);
-  } else if (addCharacters) {
+  }
+  if (addCharacters) {
     userInputs = characters;
-  } else if (addLowercase) {
+  }
+  if (addLowercase) {
     userInputs = lowercases;
-  } else if (addUppercase) {
+  }
+  if (addUppercase) {
     userInputs = uppercases;
-  } else if (addNumbers) {
+  }
+  if (addNumbers) {
     userInputs = numbers;
   }
 
