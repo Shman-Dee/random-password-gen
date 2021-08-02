@@ -8,7 +8,7 @@ var passwordLength = "";
 
 passwordLength = Number(passwordLength);
 
-// create arrays with each character set
+// create arrays with each of 4 fields.  then converted into strings
 var characters = [
   "!",
   "@",
@@ -106,45 +106,44 @@ var low = lowercases.toString();
 
 // Write password to the #password input
 
-//prompt to add a numeric value
+//prompt to add a numeric value for password length
 function generatePassword() {
   passwordLength = prompt("Please choose a password length between 8 and 128");
   if (passwordLength < 8 || passwordLength > 128) {
-    passwordLength = prompt("Password must be 8 to 128 characters");
+    passwordLength = prompt("Password MUST be 8 to 128 characters");
+    return generatePassword();
 
-    //if true lead to confirmation of each array type
+    //if above condition is met variables are set for each confirmation field.
+
+    //if the condition is true then the the strings are added into the variable of userInputs
   } else {
     var addNumbers = confirm("Do you want numbers in your password?");
     if (addNumbers) {
-      userInputs += num;
+      userInputs = userInputs + num;
     }
     var addUppercase = confirm(
       "Do you want UPPERCASE letters in your password?"
     );
     if (addUppercase) {
-      userInputs += upp;
+      userInputs = userInputs + upp;
     }
     var addLowercase = confirm(
       "Do you want lowercase letters in your password?"
     );
     if (addLowercase) {
-      userInputs += low;
+      userInputs = userInputs + low;
     }
     var addCharacters = confirm("Do you want characters in your password?");
     if (addCharacters) {
-      userInputs += char;
+      userInputs = userInputs + char;
     }
   }
+  //all true conditions are stored to global memmory
 
-  // all possible boolean statments for checked array fields
-  if (
-    addCharacters === false &&
-    addLowercase === false &&
-    addUppercase === false &&
-    addNumbers === false
-  ) {
+  //at least one character type needs to be confirmed to continue.
+  if (!addCharacters && !addLowercase && !addUppercase && !addNumbers) {
     userInputs = alert("At least one field MUST be selected");
-    generatePassword();
+    
   }
 
   var result = "";
@@ -161,14 +160,6 @@ function writePassword() {
 
   passwordText.value = password;
 }
-
-// Add event listener to generate button
-
-// writePassword = prompt("Please choose a password length between 8 and 128");
-
-//ask the character length of the password. ask if they want uppercase, lowercase, numeric, and special characters in the password.
-
-//if the character length is lower than 8 or greater the 128 or there are no character types selected then abort and provide feed back to the user. one character type needs to be choosen to continue.
 
 //if all criteria is met, randomly generate password set to specified length and includes all selected character types
 
