@@ -5,10 +5,6 @@ generateBtn.addEventListener("click", writePassword);
 //created input variables
 var userInputs = "";
 var passwordLength = "";
-var addNumbers;
-var addCharacters;
-var addLowercase;
-var addUppercase;
 
 passwordLength = Number(passwordLength);
 
@@ -46,7 +42,9 @@ var characters = [
   "/",
   "?",
 ];
+var char = characters.toString();
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var num = numbers.toString();
 var uppercases = [
   "A",
   "B",
@@ -75,6 +73,7 @@ var uppercases = [
   "Y",
   "Z",
 ];
+var upp = uppercases.toString();
 var lowercases = [
   "a",
   "b",
@@ -103,82 +102,57 @@ var lowercases = [
   "y",
   "z",
 ];
+var low = lowercases.toString();
 
 // Write password to the #password input
 
 //prompt to add a numeric value
 function generatePassword() {
-  passwordLength = prompt("Please choose a password length of 8 to 128");
-  if (!passwordLength) {
-    alert("Provide value to continue");
-
-    //conditional for length
-  } else if (passwordLength <= 8 || passwordLength >= 128) {
+  passwordLength = prompt("Please choose a password length between 8 and 128");
+  if (passwordLength < 8 || passwordLength > 128) {
     passwordLength = prompt("Password must be 8 to 128 characters");
 
     //if true lead to confirmation of each array type
   } else {
-    addNumbers = confirm("Do you want numbers in your password?");
-    addUppercase = confirm("Do you want UPPERCASE letters in your password?");
-    addLowercase = confirm("Do you want lowercase letters in your password?");
-    addCharacters = confirm("Do you want characters in your password?");
+    var addNumbers = confirm("Do you want numbers in your password?");
+    if (addNumbers) {
+      userInputs += num;
+    }
+    var addUppercase = confirm(
+      "Do you want UPPERCASE letters in your password?"
+    );
+    if (addUppercase) {
+      userInputs += upp;
+    }
+    var addLowercase = confirm(
+      "Do you want lowercase letters in your password?"
+    );
+    if (addLowercase) {
+      userInputs += low;
+    }
+    var addCharacters = confirm("Do you want characters in your password?");
+    if (addCharacters) {
+      userInputs += char;
+    }
   }
+
   // all possible boolean statments for checked array fields
-  if (!addCharacters && !addLowercase && !addUppercase && !addNumbers) {
+  if (
+    addCharacters === false &&
+    addLowercase === false &&
+    addUppercase === false &&
+    addNumbers === false
+  ) {
     userInputs = alert("At least one field MUST be selected");
-  }
-  if (addCharacters && addLowercase && addUppercase && addNumbers) {
-    userInputs = characters.concat(numbers, uppercases, lowercases);
-  }
-  if (addCharacters && addLowercase && addUppercase) {
-    userInputs = characters.concat(lowercases, uppercases);
-  }
-  if (addCharacters && addLowercase && addNumbers) {
-    userInputs = characters.concat(lowercases, numbers);
-  }
-  if (addCharacters && addUppercase && addNumbers) {
-    userInputs = characters.concat(uppercases, numbers);
-  }
-  if (addLowercase && addUppercase && addNumbers) {
-    userInputs = lowercases.concat(uppercases, numbers);
-  }
-  if (addCharacters && addLowercase) {
-    userInputs = characters.concat(lowercases);
-  }
-  if (addCharacters && addUppercase) {
-    userInputs = characters.concat(uppercases);
-  }
-  if (addCharacters && addNumbers) {
-    userInputs = characters.concat(numbers);
-  }
-  if (addLowercase && addUppercase) {
-    userInputs = lowercases.concat(uppercases);
-  }
-  if (addLowercase && addNumbers) {
-    userInputs = lowercases.concat(numbers);
-  }
-  if (addUppercase && addNumbers) {
-    userInputs = uppercases.concat(numbers);
-  }
-  if (addCharacters) {
-    userInputs = characters;
-  }
-  if (addLowercase) {
-    userInputs = lowercases;
-  }
-  if (addUppercase) {
-    userInputs = uppercases;
-  }
-  if (addNumbers) {
-    userInputs = numbers;
+    generatePassword();
   }
 
   var result = "";
 
   for (var i = 0; i < passwordLength; i++) {
     result = result + userInputs[Math.floor(Math.random() * userInputs.length)];
-    console.log(reult);
   }
+  return result;
 }
 
 function writePassword() {
